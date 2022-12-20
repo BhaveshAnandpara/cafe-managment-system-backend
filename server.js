@@ -7,10 +7,10 @@ const cors = require("cors");
 const http = require('http')
 const { MongoClient } = require('mongodb');
 
-const authRoute = require("../Api/Rotues/auth")
-const cafeRoute = require("../Api/Rotues/cafe")
-const menuRoute = require("../Api/Rotues/menu")
-const orderRoute = require("../Api/Rotues/order")
+const authRoute = require("./Rotues/auth")
+const cafeRoute = require("./Rotues/cafe")
+const menuRoute = require("./Rotues/menu")
+const orderRoute = require("./Rotues/order")
 
 const stream = require('stream');
 
@@ -103,11 +103,11 @@ io.on('connection', socket => {
 
   socket.on('orderComplete', data => {
     console.log(orderId + " = Order Completed by Chef")
-    socket.in(data.orderId).emit( "orderCompletedByChef" ,  { status: 200, cafeId: data.cafeId })
+    socket.in(data.orderId).emit("orderCompletedByChef", { status: 200, cafeId: data.cafeId })
   })
 
-  socket.on('disconnectCafe' , (data)=>{
-    console.log( data.socket.id +  " Disconnected")
+  socket.on('disconnectCafe', (data) => {
+    console.log(data.socket.id + " Disconnected")
     socket.leave(data.orderId)
   })
 
