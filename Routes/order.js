@@ -1,4 +1,4 @@
-const router = require("express").Router()
+const order = require("express").Router()
 const Order = require("../Models/Order")
 const User = require("../Models/User")
 const Cafe = require("../Models/Cafe")
@@ -24,7 +24,7 @@ function getTimeInSec(time, date) {
 
 }
 
-router.post('/addOrder', async (req, res) => {
+order.post('/addOrder', async (req, res) => {
 
     const today = new Date()
 
@@ -87,7 +87,7 @@ router.post('/addOrder', async (req, res) => {
 })
 
 
-router.post('/getCurrentOrders', async (req, res) => {
+order.post('/getCurrentOrders', async (req, res) => {
 
     const cafe = req.body.cafeId
 
@@ -129,7 +129,7 @@ router.post('/getCurrentOrders', async (req, res) => {
 
 })
 
-router.post('/completeOrder', async (req, res) => {
+order.post('/completeOrder', async (req, res) => {
 
     const orderId = req.body.orderId
 
@@ -146,4 +146,4 @@ router.post('/completeOrder', async (req, res) => {
 
 
 
-module.exports = router
+module.exports = order

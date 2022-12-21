@@ -5,12 +5,13 @@ const dotenv = require("dotenv")
 const cookiePasrser = require('cookie-parser')
 const cors = require("cors");
 const http = require('http')
+const routes = require('./Routes/router')
 const { MongoClient } = require('mongodb');
 
-const authRoute = require("./Rotues/auth")
-const cafeRoute = require("./Rotues/cafe")
-const menuRoute = require("./Rotues/menu")
-const orderRoute = require("./Rotues/order")
+// const authRoute = require("./Routes/auth")
+// const cafeRoute = require("./Routes/cafe")
+// const menuRoute = require("./Routes/menu")
+// const orderRoute = require("./Routes/order")
 
 const stream = require('stream');
 
@@ -75,10 +76,13 @@ async function main() {
 app.use(express.json())
 app.use(cookiePasrser())
 
-app.use("/auth", authRoute)
-app.use("/cafe", cafeRoute)
-app.use("/menu", menuRoute)
-app.use("/order", orderRoute)
+app.use("/", routes);
+/* app.use("/api/", routes);  //for API backend*/
+
+// app.use("/auth", authRoute)
+// app.use("/cafe", cafeRoute)
+// app.use("/menu", menuRoute)
+// app.use("/order", orderRoute)
 
 app.use('/', (req,res) => {
   res.json("NIce")

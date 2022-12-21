@@ -1,4 +1,4 @@
-const router = require("express").Router()
+const cafe = require("express").Router()
 const Cafe = require("../Models/Cafe")
 const User = require("../Models/User")
 const verify = require('../verifyToken')
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({ // notice you are calling the multer.diskSt
 const upload = multer({ storage: storage })
 
 
-router.post('/registerCafe', upload.single('image'), async (req, res) => {
+cafe.post('/registerCafe', upload.single('image'), async (req, res) => {
 
     const data = JSON.parse(req.body.data)
 
@@ -67,7 +67,7 @@ router.post('/registerCafe', upload.single('image'), async (req, res) => {
 
 })
 
-router.get('/getCafeDetails', async (req, res) => {
+cafe.get('/getCafeDetails', async (req, res) => {
 
     const id = req.query.id
     const table = req.query.table
@@ -90,7 +90,7 @@ router.get('/getCafeDetails', async (req, res) => {
 
 })
 
-router.post('/getCafes', async (req, res) => {
+cafe.post('/getCafes', async (req, res) => {
 
     const city = req.body.city
 
@@ -106,7 +106,7 @@ router.post('/getCafes', async (req, res) => {
 })
 
 
-router.post('/updateRating', async (req, res) => {
+cafe.post('/updateRating', async (req, res) => {
 
     const ratedata = req.body.data
 
@@ -125,4 +125,4 @@ router.post('/updateRating', async (req, res) => {
 
 })
 
-module.exports = router
+module.exports = cafe
