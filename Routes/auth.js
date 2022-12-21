@@ -1,4 +1,4 @@
-const auth = require("express").Router()
+const router = require("express").Router()
 const User = require("../Models/User")
 const CryptoJS = require("crypto-js")
 const crypto = require('crypto') //For Hashing
@@ -24,7 +24,7 @@ function createHash(data) {
 }
 
 
-auth.post('/register', async (req, res) => {
+router.post('/register', async (req, res) => {
 
     //declaring credentials
     const fullName = req.body.name
@@ -79,7 +79,7 @@ auth.post('/register', async (req, res) => {
 
 })
 
-auth.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
 
     //Decrlaring credentials
     const email = req.body.email
@@ -117,7 +117,7 @@ auth.post('/login', async (req, res) => {
 
 })
 
-auth.post('/verifyOTP', async (req, res) => {
+router.post('/verifyOTP', async (req, res) => {
 
     try {
 
@@ -164,7 +164,7 @@ auth.post('/verifyOTP', async (req, res) => {
 
 })
 
-auth.post('/resetPassword', async (req, res) => {
+router.post('/resetPassword', async (req, res) => {
 
     const hash = req.body.newHash
     const password = req.body.password
@@ -212,4 +212,4 @@ auth.post('/resetPassword', async (req, res) => {
 })
 
 
-module.exports = auth
+module.exports = router

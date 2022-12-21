@@ -1,4 +1,4 @@
-const menu = require("express").Router()
+const router = require("express").Router()
 const Dish = require('../Models/Dish')
 const verify = require('../verifyToken')
 const multer = require('multer');
@@ -33,7 +33,7 @@ const getCorrectDateFormat = (date) => {
 }
 
 
-menu.post('/addNewDish', upload.single('image'), async (req, res) => {
+router.post('/addNewDish', upload.single('image'), async (req, res) => {
 
     const data = JSON.parse(req.body.data)
 
@@ -85,7 +85,7 @@ menu.post('/addNewDish', upload.single('image'), async (req, res) => {
 
 })
 
-menu.post('/deleteDish', upload.single('image'), async (req, res) => {
+router.post('/deleteDish', upload.single('image'), async (req, res) => {
 
     const data = JSON.parse(req.body.data)
 
@@ -121,7 +121,7 @@ menu.post('/deleteDish', upload.single('image'), async (req, res) => {
 
 })
 
-menu.post('/getDish', async (req, res) => {
+router.post('/getDish', async (req, res) => {
 
     const id = req.body.id
     console.log(id)
@@ -142,7 +142,7 @@ menu.post('/getDish', async (req, res) => {
 
 })
 
-menu.post('/updateRating', async (req, res) => {
+router.post('/updateRating', async (req, res) => {
 
     const data = req.body.data
 
@@ -159,7 +159,7 @@ menu.post('/updateRating', async (req, res) => {
 
 })
 
-menu.post('/getDishDetails', async (req, res) => {
+router.post('/getDishDetails', async (req, res) => {
 
 
     const cafeId = req.body.cafeId
@@ -257,4 +257,4 @@ menu.post('/getDishDetails', async (req, res) => {
 
 })
 
-module.exports = menu
+module.exports = router
