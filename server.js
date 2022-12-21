@@ -14,8 +14,6 @@ const orderRoute = require("./Rotues/order")
 
 const stream = require('stream');
 
-
-
 async function monitorListingsUsingEventEmitter(client, pipeline = []) {
 
   const collection = client.db("test").collection("orders");
@@ -74,7 +72,6 @@ async function main() {
   });
 }
 
-
 app.use(express.json())
 app.use(cookiePasrser())
 
@@ -82,6 +79,10 @@ app.use("/auth", authRoute)
 app.use("/cafe", cafeRoute)
 app.use("/menu", menuRoute)
 app.use("/order", orderRoute)
+
+app.use('/', (req,res) => {
+  res.json("NIce")
+})
 
 const server = http.createServer(app)
 const io = require('socket.io')(server, {
@@ -113,7 +114,8 @@ io.on('connection', socket => {
 
 })
 
+const PORT = process.env.PORT || 6969
 
-server.listen(6969, () => {
+server.listen(PORT, () => {
   console.log("Backend Server is Running");
 })
