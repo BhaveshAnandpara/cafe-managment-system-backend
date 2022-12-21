@@ -16,7 +16,7 @@
     "socket.io": "^4.5.4"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "type": "commonjs"
 }
