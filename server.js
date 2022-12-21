@@ -81,9 +81,7 @@ app.use("/auth", authRoute)
 app.use("/cafe", cafeRoute)
 app.use("/menu", menuRoute)
 app.use("/order", orderRoute)
-app.use( '/' , (req,res)=>{
-  res.json("NICE")
-} )
+
 
 const server = http.createServer(app)
 const io = require('socket.io')(server, {
